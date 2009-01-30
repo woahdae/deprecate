@@ -10,11 +10,11 @@ instead of logging.
 
 ### Usage
 
-Declare <code>depricate :method, "Message"</code> after a method definition.
+Declare <code>deprecate :method, "Message"</code> after a method definition.
 
 Note that the use case that inspired this was renaming old methods whose names are no longer informative
 given our current project complexity. So, know that declaring <code>alias :old :new</code> before
-<code>depricate</code> works fine for this.
+<code>deprecate</code> works fine for this.
 
 ### Example
 
