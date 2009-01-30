@@ -5,7 +5,7 @@ require 'date'
 require 'spec/rake/spectask'
 
 GEM = "deprecate"
-GEM_VERSION = "0.0.1"
+GEM_VERSION = "1.0"
 AUTHOR = "Woody Peterson"
 EMAIL = "woody.peterson@gmail.com"
 HOMEPAGE = "http://github.com/woahdae/deprecate"
@@ -16,19 +16,16 @@ spec = Gem::Specification.new do |s|
   s.version = GEM_VERSION
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = true
-  s.extra_rdoc_files = ["README", "LICENSE", 'TODO']
+  s.extra_rdoc_files = ["README.markdown", "LICENSE"]
   s.summary = SUMMARY
   s.description = s.summary
   s.author = AUTHOR
   s.email = EMAIL
   s.homepage = HOMEPAGE
   
-  # Uncomment this to add a dependency
-  # s.add_dependency "foo"
-  
   s.require_path = 'lib'
   s.autorequire = GEM
-  s.files = %w(LICENSE README Rakefile TODO) + Dir.glob("{lib,spec}/**/*")
+  s.files = %w(LICENSE README.markdown Rakefile) + Dir.glob("{lib,spec}/**/*")
 end
 
 task :default => :spec

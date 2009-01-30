@@ -7,6 +7,10 @@ module Deprecate
   
   module ClassMethods
     
+    ##
+    # === Usage
+    # Declare <code>deprecate :method, "Message Ending"</code> after a method definition.
+    
     def deprecate(old_method, message_ending = "")
       message = "#{old_method} is deprecated. " + message_ending
       
@@ -15,7 +19,7 @@ module Deprecate
       class_eval("alias #{deprecated_method} #{old_method}")
       define_method(old_method) do |*args|
         if $DEPRECATE
-          raise(DeprecationError, message) 
+          raise(DeprecationError, message)
         else
           deprecation_warning("[DEPRECATED] " + message)
         end
