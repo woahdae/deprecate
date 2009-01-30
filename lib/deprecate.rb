@@ -10,18 +10,17 @@ module Deprecate
     def deprecate(old_method, message_ending = "")
       message = "#{old_method} is deprecated. " + message_ending
       
+      # wrap the old method in a new method that complains about being used
       deprecated_method = "deprecated_#{old_method}".to_sym
       class_eval("alias #{deprecated_method} #{old_method}")
-      instance_eval do
-        define_method(old_method) do |*args|
-          if $DEPRECATE
-            raise(DeprecationError, message) 
-          else
-            deprecation_warning("[DEPRECATED] " + message)
-          end
-          
-          self.send(deprecated_method, *args)
+      define_method(old_method) do |*args|
+        if $DEPRECATE
+          raise(DeprecationError, message) 
+        else
+          deprecation_warning("[DEPRECATED] " + message)
         end
+        
+        self.send(deprecated_method, *args)
       end
     end
 
